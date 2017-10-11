@@ -16,4 +16,4 @@ If you store the data files in a Dropbox folder, then you can get file access pr
 
 ## Local storage
 
-It is important to have the files stored on the local hard disk. Otherwise the file writing time may be (massively) extended if writing to a network drive. E.g. 10000 seconds compared to 155.05 seconds for the sample data.
+It is important to have the files stored on the local hard disk. Otherwise the file writing time may be (massively) extended if writing to a network drive. For example, on my machine, writing to the network drive took 6208.91 seconds compared to 155.05 seconds writing locally for the sample data.
