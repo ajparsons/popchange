@@ -16,7 +16,7 @@ These scripts allow you to take any Census attribute for any Census year (1971 -
 
 ## Download and Prepare Census data
 
-Prepare the Census data you wish to use. An example of this file is at `input\1991\attributes\1991-OA-attributes-sas01.csv`. This file is loaded the script [analysis-no-overlay.R](analysis-no-overlay.R) on line 41. This is a CSV file containing a list of all the OAs or EDs (depending on the census year) and the one or more attributes you wish to create a grid for. One grid will be created for each attribute you enter. For example:
+Prepare the Census data you wish to use. An example of this file is at `input\1991\attributes\1991-OA-attributes-sas01.csv`. This file is loaded the script [analysis-no-overlay.R](https://github.com/nickbearman/popchange/blob/master/docs/analysis-no-overlay.R) on line 41. This is a CSV file containing a list of all the OAs or EDs (depending on the census year) and the one or more attributes you wish to create a grid for. One grid will be created for each attribute you enter. For example:
 
 |  GeographyCode | PresRes  |  TotalPop | EtWh  |  EtBlCab |
 | --- | --- | --- | --- | --- |
@@ -37,7 +37,7 @@ It is important that your input CSV file is within the `input` folder. How you o
 If you wish to calculate grids for another variable, you can download Census data from a numner of different sites. Here are the sources used for this project, and some associated notes:  
 
 - **1971 - 2001** Casweb [http://casweb.ukdataservice.ac.uk](http://casweb.ukdataservice.ac.uk)  
-- - For 1971, need to prepare the data as below, and then run code to allocate 71 EDs to 81 EDs as per script [lookup71-81.R](lookup71-81.R).  
+- - For 1971, need to prepare the data as below, and then run code to allocate 71 EDs to 81 EDs as per script [lookup71-81.R](https://github.com/nickbearman/popchange/blob/master/lookup71-81.R).  
 - - For 1991, some tables are structured differently and so you need to download separately and combine them combine them into one file (usually the variable structure matches for England and Wales, and is similar for Scotland).  
 - - For 2001, you need to download England, Scotland and Wales separately and combine them into one file (usually the variable structure matches for England and Wales, and is similar for Scotland).  
 
