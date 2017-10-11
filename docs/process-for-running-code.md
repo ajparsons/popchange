@@ -16,7 +16,7 @@ These scripts allow you to take any Census attribute for any Census year (1971 -
 
 ## Download and Prepare Census data
 
-Prepare the Census data you wish to use. An example of this file is at `input\1991\attributes\1991-OA-attributes-sas01.csv`. This file is loaded the script [analysis-no-overlay.R](https://github.com/nickbearman/popchange/blob/master/docs/analysis-no-overlay.R) on line 41. This is a CSV file containing a list of all the OAs or EDs (depending on the census year) and the one or more attributes you wish to create a grid for. One grid will be created for each attribute you enter. For example:
+Prepare the Census data you wish to use. An example of this file is at `input\1991\attributes\1991-OA-attributes-sas01.csv`. This file is loaded the script [analysis-no-overlay.R](https://github.com/nickbearman/popchange/blob/master/analysis-no-overlay.R) on line 41. This is a CSV file containing a list of all the OAs or EDs (depending on the census year) and the one or more attributes you wish to create a grid for. One grid will be created for each attribute you enter. For example:
 
 |  GeographyCode | PresRes  |  TotalPop | EtWh  |  EtBlCab |
 | --- | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ If you wish to calculate grids for another variable, you can download Census dat
 - - Download England & Wales data from Nomis [https://www.nomisweb.co.uk/census/2011/bulk/r2_2](https://www.nomisweb.co.uk/census/2011/bulk/r2_2).  
 - - Download Scotland data from Scotland Census [http://www.scotlandscensus.gov.uk/ods-web/data-warehouse.html#bulkdatatab](http://www.scotlandscensus.gov.uk/ods-web/data-warehouse.html#bulkdatatab).  
 - - *Some Scotland variables are ordered very differently (e.g. Country of Birth & Ethnicity). Combine these carefully!*  
-- - Also replace '-' in Scotland 11 with '0', using Find and Replace. This is easiest done in a text editor (e.g. TextWrangler ot Notepad) than LibreOffice Calc because of the size of the file.  
+- - Also replace `-` in Scotland 11 with `0`, using Find and Replace. This is easiest done in a text editor (e.g. TextWrangler ot Notepad) than LibreOffice Calc because of the size of the file.  
 
 When working out the field names to go into the OA-attributes CSV file, remember to make sure they are 10 characters or less. See the example in `input\1991\attributes\1991-OA-attributes-sas01.csv`. 
 
