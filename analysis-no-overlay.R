@@ -1,24 +1,16 @@
 #Script for census data surface modelling
 #Written by Nick Bearman, started 20150604
+#Lasted edited by Nick Bearman, 20181011
 
 #I have attempted to setup this project using the principles outlined at:
 #https://politicalsciencereplication.wordpress.com/2013/06/04/how-to-make-your-work-reproducible/
 #http://nicercode.github.io/blog/2013-04-05-projects/
 
 #this is analysis-no-overlay.R
-  #which contains a mixture of code I am currently working on and some functions 
-  #funcations are stored in /R-functions/, being loaded using source("r-functions/(name).R")
-
-#History
-  #Currently (20150604) it loads the Liverpool Knowsley sample data (OA 2011) and ethnic group (2011)
-  #swapping out (20150608) to North west GOR
-  #(20150624) Code runs for Liverpool and Knowsley subset, reads in data (OA 2011, merged* with landuse data). 
-  #Does landuse reallocation, and then reallocation in to 1km grids. 
-  #moved code into functions (AreaWeightedSum and AreaWeightedSumLanduse)
-  #20150718 all code in functions, tried out some test subsets. 
-  #20151007 refined smoothing code to use raster basis rather than vector - much faster
-  #20151105 have a version that does more or less everything. More detailed history is in data-notes.txt
-  #20160105 lots of minor changes to speed up code. Also works based on overlay input.
+  #which contains the code to generate grid files. Some funcations are stored in /R-functions/, 
+  #being loaded using source("r-functions/(name).R")
+  #for more information, see 
+  #https://github.com/nickbearman/popchange/blob/master/docs/process-for-running-code.md
 
 #Section 1. Loading Libaries and Data
   cat("\r", "1. Loading Libaries, Functions and Data")
@@ -36,29 +28,23 @@
   library(rgdal)
   library(rgeos)
   library(raster)
-#1b. Load Custom written functions
-  #source("R-functions/funPreProcessing.R")              #2
-  #source("R-functions/funAreaWeightedSumLanduse.R")     #3
-  #source("R-functions/funAreaWeightedSumOverlayGrid.R") #4
-  #source("R-functions/funAdjustPop.R")                  #2
-  #source("R-functions/funAllocateToGrid.R")
-  source("R-functions/funAllocateContiguousRegions.R")  #3  
-  source("R-functions/funGridSmoothing.R")              #4
-  source("R-functions/funGridSmoothingIterative.R")     #5
-  source("R-functions/funExportGrid.R")                 #5
-  source("R-functions/funCalcRate.R")                 #5
-  #source("R-functions/funDataSummary.R")                #10  
-  source("R-functions/funDataSummaryNoOverlay.R")       #10  
+#1b. Load custom written functions
+  source("R-functions/funAllocateContiguousRegions.R")  #used in Section 3  
+  source("R-functions/funGridSmoothing.R")              #used in Section 4
+  source("R-functions/funGridSmoothingIterative.R")     #used in Section 5
+  source("R-functions/funExportGrid.R")                 #used in Section 5
+  source("R-functions/funCalcRate.R")                   #used in Section 5
+  source("R-functions/funDataSummaryNoOverlay.R")       #used in Section 10  
 
-#1c. Load Data (swap out from data.R file)
+#1c. Load Data
   #read in OA attributes (the Census variables we are allocating to grid), strip.white = TRUE removes training spaces found in 1981 Census download
-    OA_attributes <- read.csv("input/1991/attributes/1991_townsend.csv", strip.white = TRUE)  
+    OA_attributes <- read.csv("input/1991/attributes/1991-OA-attributes-sas01.csv", strip.white = TRUE)  
   #read in grid proportion (proportion of each OA in each grid)
     OA_grid <- read.csv("input/1991/1991-OA-grid-proportion.csv")
   #set year
     year <- 1991
   #Setup file names to save
-    filename_prefix <- "1991_Townsend"
+    filename_prefix <- "1991_TotalPopulation"
   #set iterative smoothing
     iterative_smoothing <- FALSE #set to TRUE if you want iterative smoothing
   #set denominator column in input file for calculation of percentages (usually 1) (0 means do not calculate percentages)

@@ -2,10 +2,10 @@
 .Rhistory
 .RData
 data
-output
 .Rapp.history
 shared
-input/
 merge
-PopChangeCode.Rproj
 process-for-running-code.html
+docs/townsend-definition/Thumbs.db
+README.html
+output/
